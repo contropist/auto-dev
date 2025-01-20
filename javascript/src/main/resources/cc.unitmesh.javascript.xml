@@ -1,0 +1,48 @@
+<idea-plugin package="cc.unitmesh.ide.javascript">
+    <!--suppress PluginXmlValidity -->
+    <dependencies>
+        <plugin id="JavaScript"/>
+    </dependencies>
+
+    <extensions defaultExtensionNs="cc.unitmesh">
+        <autoDevIntention>
+            <className>cc.unitmesh.ide.javascript.actions.AutoPageAction</className>
+            <bundleName>messages.AutoDevBundle</bundleName>
+            <categoryKey>intention.category.llm</categoryKey>
+        </autoDevIntention>
+
+        <classContextBuilder language="JavaScript" implementationClass="cc.unitmesh.ide.javascript.context.JavaScriptClassContextBuilder"/>
+        <classContextBuilder language="TypeScript" implementationClass="cc.unitmesh.ide.javascript.context.JavaScriptClassContextBuilder"/>
+
+        <methodContextBuilder language="JavaScript" implementationClass="cc.unitmesh.ide.javascript.context.JavaScriptMethodContextBuilder"/>
+        <methodContextBuilder language="TypeScript" implementationClass="cc.unitmesh.ide.javascript.context.JavaScriptMethodContextBuilder"/>
+
+        <fileContextBuilder language="JavaScript" implementationClass="cc.unitmesh.ide.javascript.context.JavaScriptFileContextBuilder"/>
+        <fileContextBuilder language="TypeScript" implementationClass="cc.unitmesh.ide.javascript.context.JavaScriptFileContextBuilder"/>
+
+        <variableContextBuilder language="JavaScript" implementationClass="cc.unitmesh.ide.javascript.context.JavaScriptVariableContextBuilder"/>
+        <variableContextBuilder language="TypeScript" implementationClass="cc.unitmesh.ide.javascript.context.JavaScriptVariableContextBuilder"/>
+
+        <chatContextProvider implementation="cc.unitmesh.ide.javascript.provider.JavaScriptContextProvider"/>
+        <chatContextProvider implementation="cc.unitmesh.ide.javascript.provider.JavaScriptVersionProvider"/>
+
+        <codeModifier language="JavaScript" implementationClass="cc.unitmesh.ide.javascript.provider.testing.JestCodeModifier"/>
+        <codeModifier language="TypeScript" implementationClass="cc.unitmesh.ide.javascript.provider.testing.JestCodeModifier"/>
+
+        <promptStrategy language="JavaScript" implementation="cc.unitmesh.ide.javascript.provider.JavaScriptPromptStrategyAdvisor"/>
+        <promptStrategy language="TypeScript" implementation="cc.unitmesh.ide.javascript.provider.JavaScriptPromptStrategyAdvisor"/>
+
+        <testContextProvider language="JavaScript" implementation="cc.unitmesh.ide.javascript.provider.testing.JSAutoTestService"/>
+        <testContextProvider language="TypeScript" implementation="cc.unitmesh.ide.javascript.provider.testing.JSAutoTestService"/>
+
+        <refactoringTool language="TypeScript"
+                         implementationClass="cc.unitmesh.ide.javascript.provider.TypeScriptRefactoringTool"/>
+
+        <livingDocumentation language="JavaScript"
+                             implementationClass="cc.unitmesh.ide.javascript.provider.JavaScriptLivingDocumentation"/>
+        <livingDocumentation language="TypeScript"
+                             implementationClass="cc.unitmesh.ide.javascript.provider.JavaScriptLivingDocumentation"/>
+
+        <buildSystemProvider implementation="cc.unitmesh.ide.javascript.provider.JavaScriptBuildSystemProvider" />
+    </extensions>
+</idea-plugin>

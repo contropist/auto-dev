@@ -1,50 +1,43 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
+<idea-plugin package="cc.unitmesh" xmlns:xi="http://www.w3.org/2001/XInclude" allow-bundled-update="true">
     <id>cc.unitmesh.devti</id>
     <name>AutoDev</name>
-    <vendor>phodal</vendor>
+    <vendor>Phodal Huang</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
-    <depends>com.intellij.java</depends>
+    <description><![CDATA[
+    <a href="https://plugins.jetbrains.com/plugin/21520-autodev">Homepage</a> | <a href="https://github.com/unit-mesh/auto-dev">Github</a> | <a href="https://github.com/unit-mesh/auto-dev-vscode">VSCode Version</a> | <a href="https://github.com/unit-mesh/auto-dev/issues">Issues</a>.<br />
+    <br/>
+    AutoDev is a fully automated AI-assisted programming tool and an implementation of the DevTi Intellij IDE designed for use in-flight.
+    ]]></description>
 
-    <resource-bundle>messages.DevtiBundle</resource-bundle>
+    <change-notes><![CDATA[
+        todo
+    ]]>
+    </change-notes>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable parentId="tools" instance="cc.unitmesh.devti.settings.DevtiSettingsConfigurable"
-                                 id="cc.unitmesh.devti.settings.DevtiSettingsConfigurable"
-                                 displayName="DevTi"/>
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
 
-        <applicationService serviceImplementation="cc.unitmesh.devti.settings.DevtiSettingsState"/>
-        <!-- show find bug -->
-        <runLineMarkerContributor language="JAVA"
-                                  implementationClass="cc.unitmesh.devti.language.CodeCompleteMarkerContributor"/>
-        <runLineMarkerContributor language="JAVA"
-                                  implementationClass="cc.unitmesh.devti.language.CodeCommentsMarkerContributor"/>
-        <runLineMarkerContributor language="JAVA"
-                                  implementationClass="cc.unitmesh.devti.language.FindBugMarkerContributor"/>
-        <runLineMarkerContributor language="JAVA"
-                                  implementationClass="cc.unitmesh.devti.language.CodeReviewMarkerContributor"/>
+    <xi:include href="/META-INF/autodev-core.xml" xpointer="xpointer(/idea-plugin/*)"/>
 
-        <!-- analysis story, and    -->
-        <runLineMarkerContributor language="JAVA"
-                                  implementationClass="cc.unitmesh.devti.language.AutoCRUDLineMarkerContributor"/>
+    <!--suppress PluginXmlValidity -->
+    <content>
+        <!-- language modules -->
+        <module name="cc.unitmesh.pycharm"/>
+        <module name="cc.unitmesh.idea"/>
+        <module name="cc.unitmesh.kotlin"/>
+        <module name="cc.unitmesh.javascript"/>
+        <module name="cc.unitmesh.go"/>
+        <module name="cc.unitmesh.rust"/>
+<!--        <module name="cc.unitmesh.csharp"/>-->
+        <module name="cc.unitmesh.local"/>
 
-        <runConfigurationProducer
-                implementation="cc.unitmesh.devti.runconfig.command.AutoCRUDConfigurationProducer"/>
-        <runConfigurationProducer
-                implementation="cc.unitmesh.devti.runconfig.command.CompositeDevtiRunConfigurationProducer"/>
-        <configurationType implementation="cc.unitmesh.devti.runconfig.AutoCRUDConfigurationType"/>
-
-
-        <!-- Run Configurations -->
-        <programRunner implementation="cc.unitmesh.devti.runconfig.DtCommandRunner"/>
-
-        <toolWindow id="DevTi Flow" secondary="true" icon="AllIcons.Toolwindows.WebToolWindow" anchor="right"
-                    factoryClass="cc.unitmesh.devti.gui.DevtiFlowToolWindowFactory"/>
-
-        <!-- LSP -->
-        <applicationService serviceImplementation="cc.unitmesh.devti.lsp.DevtiLSPManager"/>
-        <applicationService serviceImplementation="cc.unitmesh.devti.connector.ConnectorService"/>
-        <editorFactoryDocumentListener implementation="cc.unitmesh.devti.lsp.DevtiDocumentListener"/>
-    </extensions>
+        <!-- extension modules -->
+        <module name="cc.unitmesh.database"/>
+        <module name="cc.unitmesh.terminal"/>
+        <module name="cc.unitmesh.mermaid"/>
+        <module name="cc.unitmesh.plantuml"/>
+        <module name="cc.unitmesh.git"/>
+        <module name="cc.unitmesh.devti.language"/>
+        <module name="cc.unitmesh.httpclient"/>
+    </content>
 </idea-plugin>

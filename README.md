@@ -1,148 +1,173 @@
-# AutoDev
-
 <p align="center">
-  <img src="src/main/resources/META-INF/pluginIcon.svg" width="64px" height="64px" />
+  <img src="src/main/resources/META-INF/pluginIcon.svg" width="160px" height="160px"  alt="logo" />
+</p>
+<h1 align="center">AutoDev for Intellij</h1>
+<p align="center">
+  <a href="https://codecov.io/gh/unit-mesh/auto-dev" > 
+    <img src="https://codecov.io/gh/unit-mesh/auto-dev/graph/badge.svg?token=5RzcndjFPx"/> 
+  </a>
+  <a href="https://github.com/unit-mesh/auto-dev/actions/workflows/build.yml">
+    <img src="https://github.com/unit-mesh/auto-dev/actions/workflows/build.yml/badge.svg" alt="Build" />
+  </a>
+  <a href="https://github.com/unit-mesh/chocolate-factory">
+    <img src="https://img.shields.io/badge/powered_by-chocolate_factory-blue?logo=kotlin&logoColor=fff" alt="Powered By" />
+  </a>  
 </p>
 
-[![Build](https://github.com/unit-mesh/auto-dev/actions/workflows/build.yml/badge.svg)](https://github.com/unit-mesh/auto-dev/actions/workflows/build.yml)
-[![Version](https://img.shields.io/jetbrains/plugin/v/21520-autodev.svg)](https://plugins.jetbrains.com/plugin/21520-autodev)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/21520-autodev.svg)](https://plugins.jetbrains.com/plugin/21520-autodev)
+> 🧙‍AutoDev: The AI-powered coding wizard with multilingual support 🌐, auto code generation 🏗️, and a helpful
+> bug-slaying assistant 🐞! Customizable prompts 🎨 and a magic Auto Dev/Testing/Document/Agent feature 🧪 included! 🚀
 
-> AutoDev 是一款高度自动化的 AI 辅助编程工具。AutoDev 能够与您的需求管理系统（例如 Jira、Trello、Github Issue 等）直接对接。在
-> IDE 中，您只需简单点击，AutoDev 会根据您的需求自动为您生成代码。您所需做的，仅仅是对生成的代码进行质量检查。
+VSCode Version: [https://github.com/unit-mesh/auto-dev-vscode](https://github.com/unit-mesh/auto-dev-vscode)
 
-与 GitHub Copilot 差异：
+[Quick Start →](https://ide.unitmesh.cc/quick-start)
 
-| 特征    | GitHub Copilot    | AutoDev                   |
-|-------|-------------------|---------------------------|
-| LLM训练 | 经过大模型训练，结果更加准确    | 引入 ChatGPT 或自己训练，结果不是那么准确 |
-| 返回结果  | 一次返回多个结果          | 一次返回一个完整的方法               |
-| 返回类型  | 返回一个完整的类          | 返回一个完整的方法                 |
-| 支持语言  | 支持多种语言            | 仅支持Java                   |
-| 支持功能  | 生成代码、生成注释、生成测试用例等 | 生成代码、寻找bug、生成注释等          |
-| 开源    | 不开源               | 开源                        |
+[DevIns — AI Agent language for AutoDevelopment →](https://ide.unitmesh.cc/devins) which you can use follow syntax as
+bridges for Human-AI-IDE:
 
-结论：AutoDev 的唯一优势是开源，GitHub Copilot 完胜。
+    /write:src/main/java/cc/unitmesh/Controller.java#L1-L12
 
-## Usage
+    ```java
+    public class Controller {
+        public void method() {
+            System.out.println("Hello, World!");
+        }
+    }
+    ```
 
-1. Install
-    - method 1. Install from JetBrains Plugin Repository: [AutoDev](https://plugins.jetbrains.com/plugin/21520-autodev)
-    - method 2. Download plugin from release page: [release](https://github.com/unit-mesh/auto-dev/releases) and install
-      plugin in your IDE
-2. configure GitHub Token (optional) and OpenAI config in `Settings` -> `Tools` -> `DevTi`
+With built-in syntax highlighting and auto-completion, you can use DevIns as next-generation AI Agent language.
 
-### Copilot mode
+🆕🆕🆕: New AI agent language: [https://github.com/phodal/shire](https://github.com/phodal/shire)
 
-1. click as you want:
+## AutoDev Architecture
 
-![Copilot Mode](https://unitmesh.cc/auto-dev/copilot-mode.png)
+Here is the AutoDev architecture:
 
-### AutoCRUD mode
+![](docs/autodev-arch.svg)
 
-1. add `// devti://story/github/1` comments in your code.
-2. configure GitHub repository for Run Configuration.
-3. click `AutoDev` button in the comments' left.
+## AutoDev Feature Overview
 
-Token Configure:
+<p align="center">
+  <img src="docs/autodev-overview.svg" width="100%" height="100%"  alt="Overview" />
+</p>
 
-![Token Configure](https://unitmesh.cc/auto-dev/configure-token.png)
+Features:
 
-Run Screenshots:
+- Languages support: Java, Kotlin, JavaScript/TypeScript, Rust, Python, Golang, C/C++/OC (TBC), or others...
+- Auto development mode
+    - AutoCRUD (Spring framework）. With DevTi Protocol (like `devti://story/github/1102`) will auto
+      generate Model-Controller-Service-Repository code.
+    - AutoSQL (required Database plugin). Context-aware SQL generation.
+    - AutoPage (React). Context-aware Web Page generation.
+    - AutoArkUI (HarmonyOS). Auto generate HarmonyOS ArkUI code.
+    - AutoTesting. create unit test intention, auto run unit test and try to fix test.
+    - AutoDocument. Auto generate document.
+- Copilot mode
+    - AutoDev will help you find bug, explain code, trace exception, generate commits, and more.
+    - Pattern specific. Based on your code context like (Controller, Service `import`), AutoDev will suggest the best
+      code to you.
+    - Related code. Based on recent file changes, AutoDev will call calculate similar chunk to generate the best code.
+- Chat with AI. Chat with selection code and context-aware code.
+- Customize.
+    - Custom specification of prompt. For example, Controller, Service, Repository, Model, etc.
+    - Custom intention action. You can add your own intention action.
+    - Custom LLM Server. You can customize your LLM Server in `Settings` -> `Tools` -> `AutoDev`
+    - Custom Living documentation. Customize your own living documentation, like annotation.
+    - Team AI. Customize your team prompts in codebase, and distribute to your team.
+    - Prompt override. You can override AutoDev's prompt in your codebase.
+- SDLC
+    - VCS. Generate/improve commit message, release note, and more.
+    - Code Review. Generate code-review content.
+    - Smart Refactoring. AI based Rename, refactoring with code smell, refactoring suggetion and more.
+    - Dockerfile. Based on your project, generate Dockerfile.
+    - CI/CD config. Based on build tool, generate CI/CD config file, like `.github/workflows/build.yml`.
+    - Terminal. In Terminal ToolWindow, you can use custom input to generate shell/command
+- Custom AI Agent
+    - Executable AI Agent language: DevIns.
+    - Custom AI Agent. You can integrate your own AI Agent into AutoDev.
+- Model
+    - Built-in LLM Fine-tune
+    - [UnitEval](https://github.com/unit-mesh/unit-eval) evaluate llm result
+    - [UnitGen](https://github.com/unit-mesh/unit-gen) generate code-llm fine-tune data.
 
-![AutoDev](https://unitmesh.cc/auto-dev/init-instruction.png)
+AutoDev fine-tune models:
 
-Output Screenshots:
+download from [HuggingFace](https://huggingface.co/unit-mesh)
 
-![AutoDev](https://unitmesh.cc/auto-dev/blog-controller.png)
 
-### 原理
+| name          | model download (HuggingFace)                                    | model download (OpenBayes)                                                          |
+|---------------|-----------------------------------------------------------------|-------------------------------------------------------------------------------------|
+| DeepSeek 6.7B | [AutoDev Coder](https://huggingface.co/unit-mesh/autodev-coder) | AutoDev Coder](https://openbayes.com/console/phodal/models/rCmer1KQSgp/9/overview) |
 
-AutoDev 处理过程：
 
-1. 对接了需求系统，从需求系统中获取到需求文档
-2. 根据需求文档，自动分析需求，并完善需求文档
-3. 根据完善后的需求，寻找最适合的 Endpoint，即 Controller
-4. 根据 Endpoint，自动生成 Controller 代码
-5. 根据 Controller 代码，自动生成 Service 代码
-6. 根据 Service 代码，自动生成 Repository 代码
+## Language Features
 
-## Todos
+### Language Support
 
-- [X] Languages Support by PSI
-    - [x] Java
-- [ ] Languages Support by LSP
-    - [ ] Kotlin
-    - [ ] TypeScript
-- [x] DevTi Protocol
-    - [x] format 1: `devti://story/github/1102`
-- [ ] Intelli code change
-    - [x] Endpoint modify suggestions
-    - [x] Controller Suggestion
-        - [x] import all common imports
-    - [x] Service Suggestion
-    - [ ] Repository Suggestion
-    - [ ] Model Suggestion
-- [ ] Code AI
-    - [x] Generate code
-    - [ ] Generate test
-    - [x] Add comments
-    - [x] Code Suggestions
-    - [x] Find bug...
-    - [ ] Explain code by selection
-- [x] Custom LLM Server
+We follow [Chapi](https://github.com/phodal/chapi) AST analysis engine for language support tier.
 
-## Development
+| Features                  | Java | Python | Go | Kotlin | JS/TS | C/C++ | C# | Scala | Rust | ArkTS |
+|---------------------------|------|--------|----|--------|-------|-------|----|-------|------|-------|
+| Chat Language Context     | ✅    | ✅      | ✅  | ✅      | ✅     | ✅     |    |       | ✅    | ✅     | 
+| Structure AST             | ✅    |        | ✅  | ✅      | ✅     | ✅     |    |       |      |       | 
+| Doc Generation            | ✅    | ✅      | ✅  | ✅      | ✅     |       |    |       | ✅    | ✅     | 
+| Precision Test Generation | ✅    | ✅      | ✅  | ✅      | ✅     |       |    |       | ✅    |       | 
+| Precision Code Generation | ✅    |        |    | ✅      |       |       |    |       |      |       | 
+| AutoCRUD                  | ✅    |        |    | ✅      |       |       |    |       |      |       | 
 
-1. `git clone https://github.com/unit-mesh/AutoDev.git`
-2. open in IntelliJ IDEA
-3. `./gradlew runIde`
+### Extensions
 
-### API Spec for LLM Server
+see in [exts](exts)
 
-#### 1. `POST /api`
+## Demo
 
-authorization: `Bearer ${token}`
+DevIns Language demo (Bilibili) - 中文
 
-```json
+[![Watch the video](https://img.youtube.com/vi/gVBTBdFV5hA/sddefault.jpg)](https://www.bilibili.com/video/BV12H4y1W7sE/)
 
-{
-  "auto_complete": {
-    "instruction": "",
-    "input": ""
-  },
-  "auto_comment": {
-    "instruction": "",
-    "input": ""
-  },
-  "code_review": {
-    "instruction": "",
-    "input": ""
-  },
-  "find_bug": {
-    "instruction": "",
-    "input": ""
-  }
-}
-```
+Video demo (YouTube) — English
 
-then return:
+[![Watch the video](https://img.youtube.com/vi/gVBTBdFV5hA/sddefault.jpg)](https://youtu.be/gVBTBdFV5hA)
 
-```json
-{
-  "instruction": "implementation the method",
-  "input": "xxxx",
-  "output": "xxxx"
-}
-```
+Video demo (Bilibili) - 中文
 
-### How Copilot works?
+[![Watch the video](https://img.youtube.com/vi/gVBTBdFV5hA/sddefault.jpg)](https://www.bilibili.com/video/BV1yV4y1i74c/)
 
-- IDE with InlaysAction (extends EditorAction)
-- send RPC to JSON RPC
-- WASM with TreeSitter
-- Return to IDE
+## Useful Links
+
+- [Copilot-Explorer](https://github.com/thakkarparth007/copilot-explorer) Hacky repo to see what the Copilot extension
+  sends to the server.
+- [GitHub Copilot](https://github.com/saschaschramm/github-copilot) a small part of Copilot Performance logs.
+- [花了大半个月，我终于逆向分析了Github Copilot](https://github.com/mengjian-github/copilot-analysis)
+
+## Who is using AutoDev?
+
+Welcome to add your company here.
+
+- Thoughtworks, a leading technology consultancy.
 
 ## License
 
-@Thoughtworks AIEEL Team. This code is distributed under the MPL 2.0 license. See `LICENSE` in this directory.
+Regarding the matter discussed in the LICENSE issue at the project's outset, we want to address the complexity of JetBrain plugin development. In the process, we referenced certain code and API designs from the JetBrains Community version and the JetBrains AI Assistant plugin. JetBrains understandably reserves the right to view this as potential infringement on their intellectual property.
+
+Therefore, as of April 2024, AutoDev is no longer available on the JetBrains Plugin Marketplace. However, for older versions' AutoDev, you can access downloads from our Releases page. 
+
+Additionally, we extend a warm invitation to participate in the development of the VSCode version. Your contributions are greatly appreciated.
+
+- ChatUI based
+  on: [https://github.com/Cspeisman/chatgpt-intellij-plugin](https://github.com/Cspeisman/chatgpt-intellij-plugin)
+- Multiple target inspired
+  by: [https://github.com/intellij-rust/intellij-rust](https://github.com/intellij-rust/intellij-rust)
+- SimilarFile inspired by: JetBrains and GitHub Copilot
+- DevIn Language refs
+  on [JetBrains' Markdown Util](https://github.com/JetBrains/intellij-community/tree/master/platform/markdown-utils),
+  which is licensed under the Apache 2.0 license.
+
+**Known License issues**: JetBrain plugin development is no walk in the park! Oops, we cheekily borrowed some code from
+the JetBrains Community version and the super cool JetBrains AI Assistant plugin in our codebase.
+But fret not, we are working our magic to clean it up diligently! 🧙‍♂️✨.
+
+Those codes will be removed in the future, you
+can check it in `src/main/kotlin/com/intellij/temporary`, if you want to use this plugin in your company,
+please remove those codes to avoid any legal issues.
+
+This code is distributed under the MPL 2.0 license. See `LICENSE` in this directory.
