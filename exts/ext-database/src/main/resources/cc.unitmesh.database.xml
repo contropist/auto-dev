@@ -1,0 +1,42 @@
+<idea-plugin package="cc.unitmesh.database">
+    <!--suppress PluginXmlValidity -->
+    <dependencies>
+        <plugin id="com.intellij.database"/>
+    </dependencies>
+
+    <extensions defaultExtensionNs="cc.unitmesh">
+        <autoDevIntention>
+            <className>cc.unitmesh.database.actions.GenerateEntityAction</className>
+            <bundleName>messages.AutoDevBundle</bundleName>
+            <categoryKey>intention.category.llm</categoryKey>
+        </autoDevIntention>
+        <autoDevIntention>
+            <className>cc.unitmesh.database.actions.GenerateFunctionAction</className>
+            <bundleName>messages.AutoDevBundle</bundleName>
+            <categoryKey>intention.category.llm</categoryKey>
+        </autoDevIntention>
+        <autoDevIntention>
+            <className>cc.unitmesh.database.actions.GenerateUnittestAction</className>
+            <bundleName>messages.AutoDevBundle</bundleName>
+            <categoryKey>intention.category.llm</categoryKey>
+        </autoDevIntention>
+        <autoDevIntention>
+            <className>cc.unitmesh.database.actions.AutoSqlAction</className>
+            <bundleName>messages.AutoDevBundle</bundleName>
+            <categoryKey>intention.category.llm</categoryKey>
+        </autoDevIntention>
+
+        <chatContextProvider implementation="cc.unitmesh.database.provider.DatabaseSchemaContextProvider"/>
+
+        <toolchainFunctionProvider implementation="cc.unitmesh.database.provider.DatabaseFunctionProvider"/>
+
+        <runService implementation="cc.unitmesh.database.provider.SqlRunService"/>
+
+        <livingDocumentation
+                language="SQL"
+                implementationClass="cc.unitmesh.database.provider.SqlLivingDocumentationProvider"/>
+        <livingDocumentation
+                language="Oracle"
+                implementationClass="cc.unitmesh.database.provider.SqlLivingDocumentationProvider"/>
+    </extensions>
+</idea-plugin>

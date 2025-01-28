@@ -1,0 +1,33 @@
+<idea-plugin package="cc.unitmesh.python">
+    <!--suppress PluginXmlValidity -->
+    <dependencies>
+        <plugin id="com.intellij.modules.python"/>
+    </dependencies>
+
+    <extensions defaultExtensionNs="cc.unitmesh">
+        <classContextBuilder language="Python"
+                             implementationClass="cc.unitmesh.python.context.PythonClassContextBuilder"/>
+        <fileContextBuilder language="Python"
+                            implementationClass="cc.unitmesh.python.context.PythonFileContextBuilder"/>
+        <methodContextBuilder language="Python"
+                              implementationClass="cc.unitmesh.python.context.PythonMethodContextBuilder"/>
+        <variableContextBuilder language="Python"
+                                implementationClass="cc.unitmesh.python.context.PythonVariableContextBuilder"/>
+
+        <livingDocumentation language="Python"
+                             implementationClass="cc.unitmesh.python.provider.PythonLivingDocumentation"/>
+
+        <chatContextProvider implementation="cc.unitmesh.python.PythonFrameworkContextProvider"/>
+
+<!--        <devFlowProvider-->
+<!--                language="Python"-->
+<!--                implementation="cc.unitmesh.python.provider.PythonAutoDevFlow"/>-->
+
+        <testContextProvider
+                language="Python"
+                implementation="cc.unitmesh.python.provider.PythonAutoTestService"/>
+
+        <runService implementation="cc.unitmesh.python.provider.PythonRunService"/>
+
+    </extensions>
+</idea-plugin>
